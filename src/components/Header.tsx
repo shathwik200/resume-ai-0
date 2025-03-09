@@ -42,11 +42,6 @@ const Header = () => {
               FAQ
             </Button>
           </Link>
-          <Link to="/contact">
-            <Button variant={isActive("/contact") ? "default" : "ghost"} size="sm">
-              Contact
-            </Button>
-          </Link>
         </nav>
         
         <div className="flex gap-3">

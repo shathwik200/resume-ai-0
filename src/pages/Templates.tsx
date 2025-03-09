@@ -10,28 +10,28 @@ const Templates = () => {
       id: "modern",
       name: "Modern",
       description: "Clean and contemporary design with a focus on skills and experience.",
-      image: "/modern-template.png",
+      image: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?q=80&w=2070",
       color: "bg-blue-500"
     },
     {
       id: "professional",
       name: "Professional",
       description: "Traditional layout perfect for corporate and executive positions.",
-      image: "/professional-template.png",
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070",
       color: "bg-gray-700"
     },
     {
       id: "minimal",
       name: "Minimal",
       description: "Elegant and simple design that lets your content shine.",
-      image: "/minimal-template.png",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070",
       color: "bg-teal-500"
     },
     {
       id: "creative",
       name: "Creative",
       description: "Bold layout for design, marketing, and creative professionals.",
-      image: "/creative-template.png",
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=2070",
       color: "bg-purple-500"
     }
   ];
@@ -52,16 +52,12 @@ const Templates = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {templates.map((template) => (
               <div key={template.id} className="bg-white rounded-xl overflow-hidden border shadow-sm transition-all hover:shadow-md">
-                <div className={`h-48 ${template.color} flex items-center justify-center`}>
-                  {template.image ? (
-                    <img 
-                      src={template.image} 
-                      alt={`${template.name} template`} 
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="text-white text-xl font-bold">{template.name}</div>
-                  )}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={template.image} 
+                    alt={`${template.name} template preview`} 
+                    className="h-full w-full object-cover transition-all hover:scale-105"
+                  />
                 </div>
                 <div className="p-5">
                   <h3 className="text-xl font-semibold mb-2">{template.name}</h3>
@@ -88,11 +84,11 @@ const Templates = () => {
                 <p className="mb-6">
                   We can create custom resume templates tailored to your specific industry or role.
                 </p>
-                <Link to="/contact">
+                <a href="mailto:support@resumeai.com">
                   <Button variant="outline" className="border-white text-white hover:bg-white/10">
                     Contact Us
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
