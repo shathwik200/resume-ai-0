@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const FAQ = () => {
@@ -51,7 +52,7 @@ const FAQ = () => {
             <p className="text-muted-foreground mb-8 text-center">
               Find answers to the most common questions about our resume builder
             </p>
-            
+
             <Accordion type="single" collapsible className="bg-white rounded-xl p-6 shadow-sm">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -64,7 +65,7 @@ const FAQ = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-            
+
             <div className="mt-12 text-center">
               <h2 className="text-xl font-semibold text-resume-secondary mb-4">
                 Still have questions?
@@ -72,9 +73,11 @@ const FAQ = () => {
               <p className="mb-6 text-muted-foreground">
                 Contact our support team and we'll be happy to help you out.
               </p>
-              <Link to="/contact" className="text-resume-primary hover:underline">
-                Contact Us
-              </Link>
+              <a href="mailto:support@resumeai.com">
+                <Button className="text-black">
+                  Contact Us
+                </Button>
+              </a>
             </div>
           </div>
         </div>

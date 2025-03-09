@@ -13,7 +13,7 @@ const Home = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto space-y-8">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight text-center">
-              Create Your <span className="text-resume-primary">Dream Resume</span> in Minutes
+              Create Your <span className="text-resume-primary">Perfect Resume</span> in Minutes
             </h1>
             
             <p className="text-xl text-gray-200 max-w-2xl mx-auto text-center">
@@ -29,7 +29,7 @@ const Home = () => {
               </Link>
               
               <Link to="/templates">
-                <Button size="lg" variant="outline" className="gap-2 text-white border-white hover:bg-white/10 px-8 py-6 text-lg">
+                <Button size="lg" variant="outline" className="gap-2 text-black border-white hover:bg-white/10 px-8 py-6 text-lg">
                   Browse Templates
                 </Button>
               </Link>
@@ -58,7 +58,7 @@ const Home = () => {
         
         {/* Wave Pattern */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
             <path fill="#ffffff" fillOpacity="1" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,117.3C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
         </div>

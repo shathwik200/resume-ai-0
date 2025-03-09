@@ -85,7 +85,7 @@ const Templates = () => {
                   We can create custom resume templates tailored to your specific industry or role.
                 </p>
                 <a href="mailto:support@resumeai.com">
-                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button variant="outline" className="border-white text-black hover:bg-white/10">
                     Contact Us
                   </Button>
                 </a>
