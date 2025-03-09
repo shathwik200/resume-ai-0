@@ -1,0 +1,105 @@
+
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+const Templates = () => {
+  const templates = [
+    {
+      id: "modern",
+      name: "Modern",
+      description: "Clean and contemporary design with a focus on skills and experience.",
+      image: "/modern-template.png",
+      color: "bg-blue-500"
+    },
+    {
+      id: "professional",
+      name: "Professional",
+      description: "Traditional layout perfect for corporate and executive positions.",
+      image: "/professional-template.png",
+      color: "bg-gray-700"
+    },
+    {
+      id: "minimal",
+      name: "Minimal",
+      description: "Elegant and simple design that lets your content shine.",
+      image: "/minimal-template.png",
+      color: "bg-teal-500"
+    },
+    {
+      id: "creative",
+      name: "Creative",
+      description: "Bold layout for design, marketing, and creative professionals.",
+      image: "/creative-template.png",
+      color: "bg-purple-500"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-resume-secondary mb-4">
+              Professional Resume Templates
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Choose from our collection of ATS-friendly templates designed to help you stand out
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {templates.map((template) => (
+              <div key={template.id} className="bg-white rounded-xl overflow-hidden border shadow-sm transition-all hover:shadow-md">
+                <div className={`h-48 ${template.color} flex items-center justify-center`}>
+                  {template.image ? (
+                    <img 
+                      src={template.image} 
+                      alt={`${template.name} template`} 
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-white text-xl font-bold">{template.name}</div>
+                  )}
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-semibold mb-2">{template.name}</h3>
+                  <p className="text-muted-foreground mb-4">{template.description}</p>
+                  <Link to={`/builder?template=${template.id}`}>
+                    <Button className="w-full gap-2 bg-resume-primary hover:bg-resume-primary/90">
+                      Use This Template
+                      <ArrowRight size={16} />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-resume-secondary rounded-xl p-8 text-white">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold mb-4">Need a Custom Template?</h2>
+                <p className="mb-6">
+                  We can create custom resume templates tailored to your specific industry or role.
+                </p>
+                <Link to="/contact">
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                    Contact Us
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Templates;

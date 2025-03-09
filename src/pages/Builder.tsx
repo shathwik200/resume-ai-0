@@ -7,13 +7,18 @@ import { Sparkles, Download, FileText, Zap } from "lucide-react";
 import ResumeBuilder from "@/components/ResumeBuilder";
 import ATSChecker from "@/components/ATSChecker";
 import { ResumeProvider } from "@/context/ResumeContext";
+import { exportToPdf } from "@/utils/pdfExport";
 
 const Builder = () => {
   const [activeTab, setActiveTab] = useState("builder");
 
   const handleExport = () => {
-    toast.success("Resume exported successfully!");
-    // In a real implementation, this would trigger a PDF download
+    exportToPdf("my-resume");
+  };
+
+  const handleAiOptimize = () => {
+    toast.success("Resume optimized with AI!");
+    // In a real implementation, this would trigger AI optimization
   };
 
   return (
@@ -34,7 +39,7 @@ const Builder = () => {
                   <Download size={16} />
                   Export PDF
                 </Button>
-                <Button className="gap-2 bg-resume-primary hover:bg-resume-primary/90">
+                <Button onClick={handleAiOptimize} className="gap-2 bg-resume-primary hover:bg-resume-primary/90">
                   <Sparkles size={16} />
                   AI Optimize
                 </Button>

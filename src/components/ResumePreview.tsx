@@ -1,13 +1,14 @@
 
-import React from "react";
+import React, { useRef } from "react";
 import { useResume } from "@/context/ResumeContext";
 import ModernTemplate from "@/components/templates/ModernTemplate";
 import ProfessionalTemplate from "@/components/templates/ProfessionalTemplate";
 import MinimalTemplate from "@/components/templates/MinimalTemplate";
 import CreativeTemplate from "@/components/templates/CreativeTemplate";
 
-const ResumePreview = () => {
+const ResumePreview = ({ forExport = false }: { forExport?: boolean }) => {
   const { resumeData } = useResume();
+  const resumeRef = useRef<HTMLDivElement>(null);
 
   const renderTemplate = () => {
     switch (resumeData.template) {
@@ -26,7 +27,11 @@ const ResumePreview = () => {
 
   return (
     <div className="resume-preview flex justify-center">
-      <div className="resume-page scale-[0.85] lg:scale-100 origin-top transition-all overflow-auto">
+      <div 
+        ref={resumeRef}
+        className={`resume-page ${!forExport ? "scale-[0.85] lg:scale-100" : ""} origin-top transition-all overflow-auto`}
+        id="resume-to-print"
+      >
         {renderTemplate()}
       </div>
     </div>
