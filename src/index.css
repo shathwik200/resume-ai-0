@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,11 +97,18 @@
 .resume-page {
   background-color: white;
   width: 8.5in;
-  height: 11in;
+  height: auto;
+  min-height: 11in;
   position: relative;
   margin: 0 auto;
   padding: 0.5in;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.resume-page-content {
+  height: 100%;
+  overflow-y: auto;
 }
 
 @media (max-width: 768px) {

@@ -26,7 +26,7 @@ const ResumePreview = () => {
 
   return (
     <div className="resume-preview flex justify-center">
-      <div className="resume-page scale-[0.85] lg:scale-100 origin-top transition-all">
+      <div className="resume-page scale-[0.85] lg:scale-100 origin-top transition-all overflow-auto">
         {renderTemplate()}
       </div>
     </div>
