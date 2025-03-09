@@ -1,5 +1,4 @@
-
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export type ResumeSection = 'profile' | 'experience' | 'education' | 'skills' | 'projects' | 'certifications';
 
@@ -157,17 +156,27 @@ interface ResumeContextType {
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
-export const ResumeProvider = ({ children }: { children: ReactNode }) => {
+export const ResumeProvider = ({ 
+  children, 
+  initialTemplate = null 
+}: { 
+  children: ReactNode;
+  initialTemplate?: string | null;
+}) => {
   const [resumeData, setResumeData] = useState<ResumeData>(() => {
-    // Try to load from localStorage
     const saved = localStorage.getItem('resumeData');
-    return saved ? JSON.parse(saved) : defaultResumeData;
+    const savedData = saved ? JSON.parse(saved) : defaultResumeData;
+    
+    if (initialTemplate && ['modern', 'professional', 'minimal', 'creative'].includes(initialTemplate)) {
+      savedData.template = initialTemplate;
+    }
+    
+    return savedData;
   });
 
   const [atsScore, setATSScore] = useState(0);
 
-  // Save to localStorage whenever resumeData changes
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('resumeData', JSON.stringify(resumeData));
   }, [resumeData]);
 

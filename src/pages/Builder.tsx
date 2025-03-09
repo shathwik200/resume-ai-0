@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
@@ -8,9 +8,11 @@ import ResumeBuilder from "@/components/ResumeBuilder";
 import ATSChecker from "@/components/ATSChecker";
 import { ResumeProvider } from "@/context/ResumeContext";
 import { exportToPdf } from "@/utils/pdfExport";
+import { useLocation } from "react-router-dom";
 
 const Builder = () => {
   const [activeTab, setActiveTab] = useState("builder");
+  const location = useLocation();
 
   const handleExport = () => {
     exportToPdf("my-resume");
@@ -21,8 +23,18 @@ const Builder = () => {
     // In a real implementation, this would trigger AI optimization
   };
 
+  // Get the selected template from URL query params
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const templateParam = queryParams.get("template");
+    if (templateParam) {
+      // We'll pass this to ResumeProvider below
+      console.log("Template selected from URL:", templateParam);
+    }
+  }, [location]);
+
   return (
-    <ResumeProvider>
+    <ResumeProvider initialTemplate={new URLSearchParams(location.search).get("template")}>
       <div className="min-h-screen flex flex-col">
         <main className="flex-1 container py-6">
           <div className="flex flex-col gap-6">

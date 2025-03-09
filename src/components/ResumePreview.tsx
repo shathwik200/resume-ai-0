@@ -29,8 +29,12 @@ const ResumePreview = ({ forExport = false }: { forExport?: boolean }) => {
     <div className="resume-preview flex justify-center">
       <div 
         ref={resumeRef}
-        className={`resume-page ${!forExport ? "scale-[0.85] lg:scale-100" : ""} origin-top transition-all overflow-auto`}
+        className={`resume-page ${!forExport ? "scale-[0.85] lg:scale-100" : ""} origin-top transition-all overflow-auto bg-white rounded-md shadow-sm`}
         id="resume-to-print"
+        style={{
+          width: "794px", // A4 width at 96 DPI
+          minHeight: "1123px", // A4 height at 96 DPI
+        }}
       >
         {renderTemplate()}
       </div>
