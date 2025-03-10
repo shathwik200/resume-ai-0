@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileSection from "@/components/sections/ProfileSection";
@@ -9,7 +10,7 @@ import CertificationsSection from "@/components/sections/CertificationsSection";
 import ResumePreview from "@/components/ResumePreview";
 import TemplateSelector from "@/components/TemplateSelector";
 import { Button } from "@/components/ui/button";
-import { User, Briefcase, GraduationCap, LucideIcon, Award, Code, Scroll, Eye, EyeOff } from "lucide-react";
+import { User, Briefcase, GraduationCap, LucideIcon, Award, Code, Scroll, Eye, EyeOff, Laptop, Tablet } from "lucide-react";
 import { useResume } from "@/context/ResumeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChatBot } from "@/components/ChatBot";
@@ -69,29 +70,32 @@ const ResumeBuilder = () => {
     setShowPreviewOnMobile(!showPreviewOnMobile);
   };
 
+  if (isMobile) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[70vh] px-4 text-center">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 max-w-md">
+          <div className="flex justify-center mb-4">
+            <div className="bg-yellow-100 p-3 rounded-full">
+              <Laptop className="h-8 w-8 text-yellow-600" />
+            </div>
+          </div>
+          <h2 className="text-xl font-semibold text-yellow-800 mb-2">Resume Builder Not Available on Mobile</h2>
+          <p className="text-yellow-700 mb-4">
+            For the best experience creating your resume, please switch to a tablet or desktop device. 
+            The resume builder requires a larger screen for optimal editing capabilities.
+          </p>
+          <div className="flex items-center justify-center gap-2 text-yellow-600">
+            <Tablet className="h-5 w-5" />
+            <span className="text-sm">Recommended: Tablet or larger</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="grid lg:grid-cols-5 gap-6">
-      {isMobile && (
-        <div className="flex justify-center mb-4">
-          <Button 
-            onClick={toggleMobilePreview} 
-            variant="outline" 
-            className="flex items-center gap-2"
-          >
-            {showPreviewOnMobile ? (
-              <>
-                <EyeOff size={16} /> Hide Preview
-              </>
-            ) : (
-              <>
-                <Eye size={16} /> Show Preview
-              </>
-            )}
-          </Button>
-        </div>
-      )}
-
-      <div className={`${(isMobile && !showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-2 space-y-6`}>
+      <div className="lg:col-span-2 space-y-6">
         <div className="bg-white p-6 rounded-lg border shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Template & Style</h2>
           <TemplateSelector />
@@ -121,7 +125,7 @@ const ResumeBuilder = () => {
         </div>
       </div>
 
-      <div className={`${(isMobile && showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-3`}>
+      <div className="lg:col-span-3">
         <div className="bg-muted rounded-lg p-6 border shadow-sm overflow-auto">
           <ResumePreview />
         </div>

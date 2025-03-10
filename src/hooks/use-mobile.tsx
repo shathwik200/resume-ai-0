@@ -1,6 +1,7 @@
 
 import * as React from "react"
 
+// Define mobile breakpoint at 768px (standard tablet breakpoint)
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
