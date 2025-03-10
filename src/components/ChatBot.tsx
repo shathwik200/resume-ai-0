@@ -27,7 +27,7 @@ export const ChatBot = () => {
 
     try {
       setLoading(true);
-      const userMessage = { role: 'user', content: input };
+      const userMessage: Message = { role: 'user', content: input };
       setMessages(prev => [...prev, userMessage]);
       setInput('');
 
@@ -38,7 +38,7 @@ export const ChatBot = () => {
           'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: [...messages, userMessage].map(msg => ({
             role: msg.role,
             content: msg.content
@@ -54,7 +54,7 @@ export const ChatBot = () => {
         throw new Error(data.error?.message || 'Failed to get response');
       }
 
-      const assistantMessage = {
+      const assistantMessage: Message = {
         role: 'assistant',
         content: data.choices[0].message.content
       };
