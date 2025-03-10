@@ -15,6 +15,8 @@ export const exportToPdf = async (filename = "resume") => {
     
     // Create a clone of the element to make layout adjustments before export
     const clone = resumeElement.cloneNode(true) as HTMLElement;
+    
+    // Apply the transformation for PDF export
     clone.style.transform = "scale(1)"; // Remove any scaling
     clone.style.width = "794px"; // A4 width at 96 DPI
     clone.style.height = "1123px"; // A4 height at 96 DPI
@@ -22,6 +24,20 @@ export const exportToPdf = async (filename = "resume") => {
     clone.style.top = "-9999px";
     clone.style.left = "-9999px";
     clone.style.backgroundColor = "#ffffff";
+    
+    // Apply 4px vertical offset to non-text elements
+    const nonTextElements = clone.querySelectorAll("div, span, img, svg, hr");
+    nonTextElements.forEach((element) => {
+      // Skip elements that only contain text nodes (no child elements)
+      if (element.childNodes.length === 1 && element.childNodes[0].nodeType === Node.TEXT_NODE) {
+        return;
+      }
+      
+      const el = element as HTMLElement;
+      const currentTransform = el.style.transform || "";
+      el.style.transform = currentTransform + " translateY(4px)";
+    });
+    
     document.body.appendChild(clone);
     
     const canvas = await html2canvas(clone, {
