@@ -127,6 +127,17 @@
   .creative-template > div > div:first-child {
     margin-bottom: 1rem;
   }
+  
+  /* Better mobile viewing of resume preview */
+  .resume-preview {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .resume-page {
+    transform-origin: top left;
+    max-width: 100vw;
+  }
 }
 
 /* Fix tabs overflow on small screens */
@@ -155,5 +166,30 @@
     flex-direction: column;
     background-color: white;
     padding: 1rem;
+  }
+  
+  /* Builder page specific styles */
+  .builder-container {
+    padding: 0.5rem;
+  }
+  
+  /* Better scaling for resume in mobile view */
+  #resume-to-print {
+    scale: 0.65;
+    transform-origin: top center;
+  }
+}
+
+/* Improved mobile usability */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Smaller padding for form elements on mobile */
+  .form-group, 
+  .tab-content {
+    padding: 0.5rem !important;
   }
 }

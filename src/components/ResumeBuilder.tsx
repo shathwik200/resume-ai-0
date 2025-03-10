@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileSection from "@/components/sections/ProfileSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
@@ -9,8 +9,10 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import CertificationsSection from "@/components/sections/CertificationsSection";
 import ResumePreview from "@/components/ResumePreview";
 import TemplateSelector from "@/components/TemplateSelector";
-import { User, Briefcase, GraduationCap, LucideIcon, Award, Code, Scroll } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { User, Briefcase, GraduationCap, LucideIcon, Award, Code, Scroll, Eye, EyeOff } from "lucide-react";
 import { useResume } from "@/context/ResumeContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type SectionTab = {
   value: string;
@@ -21,6 +23,8 @@ type SectionTab = {
 
 const ResumeBuilder = () => {
   const { resumeData } = useResume();
+  const [showPreviewOnMobile, setShowPreviewOnMobile] = useState(false);
+  const isMobile = useIsMobile();
 
   const sections: SectionTab[] = [
     {
@@ -61,9 +65,35 @@ const ResumeBuilder = () => {
     }
   ];
 
+  const toggleMobilePreview = () => {
+    setShowPreviewOnMobile(!showPreviewOnMobile);
+  };
+
   return (
     <div className="grid lg:grid-cols-5 gap-6">
-      <div className="lg:col-span-2 space-y-6">
+      {/* Mobile Preview Toggle Button */}
+      {isMobile && (
+        <div className="flex justify-center mb-4">
+          <Button 
+            onClick={toggleMobilePreview} 
+            variant="outline" 
+            className="flex items-center gap-2"
+          >
+            {showPreviewOnMobile ? (
+              <>
+                <EyeOff size={16} /> Hide Preview
+              </>
+            ) : (
+              <>
+                <Eye size={16} /> Show Preview
+              </>
+            )}
+          </Button>
+        </div>
+      )}
+
+      {/* Editor Section */}
+      <div className={`${(isMobile && !showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-2 space-y-6`}>
         <div className="bg-white p-6 rounded-lg border shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Template & Style</h2>
           <TemplateSelector />
@@ -93,7 +123,8 @@ const ResumeBuilder = () => {
         </div>
       </div>
 
-      <div className="lg:col-span-3">
+      {/* Preview Section */}
+      <div className={`${(isMobile && showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-3`}>
         <div className="bg-muted rounded-lg p-6 border shadow-sm overflow-auto">
           <ResumePreview />
         </div>
