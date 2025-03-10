@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProfileSection from "@/components/sections/ProfileSection";
@@ -13,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { User, Briefcase, GraduationCap, LucideIcon, Award, Code, Scroll, Eye, EyeOff } from "lucide-react";
 import { useResume } from "@/context/ResumeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ChatBot } from "@/components/ChatBot";
 
 type SectionTab = {
   value: string;
@@ -71,7 +71,6 @@ const ResumeBuilder = () => {
 
   return (
     <div className="grid lg:grid-cols-5 gap-6">
-      {/* Mobile Preview Toggle Button */}
       {isMobile && (
         <div className="flex justify-center mb-4">
           <Button 
@@ -92,7 +91,6 @@ const ResumeBuilder = () => {
         </div>
       )}
 
-      {/* Editor Section */}
       <div className={`${(isMobile && !showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-2 space-y-6`}>
         <div className="bg-white p-6 rounded-lg border shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Template & Style</h2>
@@ -123,12 +121,13 @@ const ResumeBuilder = () => {
         </div>
       </div>
 
-      {/* Preview Section */}
       <div className={`${(isMobile && showPreviewOnMobile) || !isMobile ? 'block' : 'hidden'} lg:col-span-3`}>
         <div className="bg-muted rounded-lg p-6 border shadow-sm overflow-auto">
           <ResumePreview />
         </div>
       </div>
+
+      <ChatBot />
     </div>
   );
 };
