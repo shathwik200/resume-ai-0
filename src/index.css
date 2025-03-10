@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -94,9 +95,11 @@
   }
 }
 
+/* Responsive resume page styling */
 .resume-page {
   background-color: white;
-  width: 8.5in;
+  width: 100%;
+  max-width: 8.5in;
   height: auto;
   min-height: 11in;
   position: relative;
@@ -111,11 +114,46 @@
   overflow-y: auto;
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
   .resume-page {
-    width: 100%;
-    height: auto;
-    min-height: 11in;
     padding: 0.25in;
+  }
+  
+  .creative-template .grid {
+    display: block !important;
+  }
+  
+  .creative-template > div > div:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Fix tabs overflow on small screens */
+.TabsList {
+  flex-wrap: wrap;
+}
+
+/* Responsive fixes for templates */
+@media (max-width: 640px) {
+  .minimal-template .grid,
+  .professional-template .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Fix for mobile menu */
+@media (max-width: 768px) {
+  .mobile-menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem;
   }
 }

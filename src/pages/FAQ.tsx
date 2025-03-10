@@ -43,38 +43,38 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <section className="py-12 bg-gray-50">
+      <section className="py-8 md:py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl font-bold text-resume-secondary mb-2 text-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-resume-secondary mb-2 text-center">
               Frequently Asked Questions
             </h1>
-            <p className="text-muted-foreground mb-8 text-center">
+            <p className="text-sm md:text-base text-muted-foreground mb-6 md:mb-8 text-center">
               Find answers to the most common questions about our resume builder
             </p>
 
-            <Accordion type="single" collapsible className="bg-white rounded-xl p-6 shadow-sm">
+            <Accordion type="single" collapsible className="bg-white rounded-xl p-4 md:p-6 shadow-sm">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left text-resume-secondary font-medium">
+                  <AccordionTrigger className="text-left text-sm md:text-base text-resume-secondary font-medium">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-sm md:text-base text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
 
-            <div className="mt-12 text-center">
-              <h2 className="text-xl font-semibold text-resume-secondary mb-4">
+            <div className="mt-8 md:mt-12 text-center">
+              <h2 className="text-lg md:text-xl font-semibold text-resume-secondary mb-3 md:mb-4">
                 Still have questions?
               </h2>
-              <p className="mb-6 text-muted-foreground">
+              <p className="mb-4 md:mb-6 text-sm md:text-base text-muted-foreground">
                 Contact our support team and we'll be happy to help you out.
               </p>
               <a href="mailto:support@resumeai.com">
-                <Button className="text-black">
+                <Button className="text-sm md:text-base text-black">
                   Contact Us
                 </Button>
               </a>
