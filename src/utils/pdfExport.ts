@@ -35,7 +35,7 @@ export const exportToPdf = async (filename = "resume") => {
       
       const el = element as HTMLElement;
       const currentTransform = el.style.transform || "";
-      el.style.transform = currentTransform + " translateY(4px)";
+      el.style.transform = currentTransform + " translateY(2px)";
     });
     
     document.body.appendChild(clone);
